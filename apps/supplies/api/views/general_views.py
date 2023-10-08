@@ -1,9 +1,8 @@
-from apps.supplies.api.serializer.serializers import MaterialSerializers
 from rest_framework import generics, status
 from rest_framework.response import Response
 
-class MaterialListCreateAPIView(generics.ListCreateAPIView):
-    serializer_class = MaterialSerializers
+class GeneralListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = None
 
     def get_queryset(self):
         return self.get_serializer().Meta.model.objects.all()
@@ -12,11 +11,11 @@ class MaterialListCreateAPIView(generics.ListCreateAPIView):
         serializer = self.serializer_class(data = request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Material agregado correctamente'}, status = status.HTTP_201_CREATED)
+            return Response({'message': 'Elemento agregado correctamente'}, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
     
-class MaterialRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = MaterialSerializers
+class GeneralRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = None
 
     def get_queryset(self, pk = None):
         if (pk == None):

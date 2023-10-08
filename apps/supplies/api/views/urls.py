@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.supplies.api.views.general_views import MaterialListCreateAPIView, MaterialRetrieveUpdateDestroyAPIView
+from apps.supplies.api.views.specific_views import MaterialListCreateAPIView, MaterialRetrieveUpdateDestroyAPIView
 
 urlpatterns = [
     path('material/', MaterialListCreateAPIView.as_view(), name = 'material'),

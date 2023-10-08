@@ -22,7 +22,6 @@ class MaterialsModel(SuppliesBaseModel):
 
     def __str__(self):
         return self.description
-    
 
 """Modelo para las familias de las herramientas"""
 class ToolsFamilyModel(models.Model):
