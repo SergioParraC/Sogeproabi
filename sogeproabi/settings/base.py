@@ -29,7 +29,8 @@ BASE_APPS = [
 
 LOCAL_APPS = [
     'apps.base',
-    'apps.supplies'
+    'apps.supplies',
+    'apps.APUs'
 ]
 
 #Librerias externas

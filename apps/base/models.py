@@ -16,9 +16,8 @@ class SuppliesBaseModel(models.Model):
 """Modelo base para relaciones"""
 class RelationshipBaseModel(models.Model):
     id = models.BigAutoField(primary_key=True)
-    key_user_item = models.CharField("Código", max_length=15, blank=False, null=False)
     id_user_create = models.ForeignKey(User, verbose_name="Id usuario que creo el insumo", on_delete=models.CASCADE)
-    cant = models.IntegerField("Cantidad", blank=False, null=False, default=0)
+    cant = models.DecimalField("Cantidad", max_digits=5, decimal_places=2, default=0)
     cost = models.DecimalField('Costo total', max_digits=8, decimal_places=2, blank=False, default=0)
     date_create = models.DateTimeField("Fecha y hora de creación", auto_now=False, auto_now_add=True)
     date_edit = models.DateTimeField("Fecha y hora de modificación", auto_now=True, auto_now_add=False)

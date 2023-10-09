@@ -1,6 +1,5 @@
 from django.db import models
 from apps.base.models import SuppliesBaseModel, RelationshipBaseModel
-from django.contrib.auth.models import User
 
 """Modelo para las familias de los materiales"""
 class MaterialsFamilyModel(models.Model):
