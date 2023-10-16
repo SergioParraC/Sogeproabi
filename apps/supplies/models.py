@@ -43,7 +43,7 @@ class ToolsModel(SuppliesBaseModel):
 """Modelo para mano de obra"""
 class LabourModel(SuppliesBaseModel):
     
-    fact_real_salary = models.DecimalField('Factor de salario real', max_digits=5, decimal_places=5, default=1)
+    fact_real_salary = models.DecimalField('Factor de salario real', max_digits=5, decimal_places=2, default=1)
     is_real_salary = models.BooleanField('Aplica factor de salario real?', default=False)
 
 """Modelo para subcontratos a todo costo"""

@@ -1,4 +1,6 @@
-from apps.APUs.models import MaterialsRelationshipModel, AnalysisOfUnitaryPricesModel
+from apps.APUs.models import (
+    MaterialsRelationshipModel, AnalysisOfUnitaryPricesModel, LabourRelarionshipModel
+)
 from rest_framework import serializers
 
 """Vista general para los APUs"""
@@ -25,7 +27,8 @@ class MaterialRelationSerializers(serializers.ModelSerializer):#Persona
         return{
             'id_user_create': instance.id_user_create.username,
             'cant': instance.cant,
-            'cost': instance.cost,
+            'unit_cost': instance.cost,
+            'total_cost': instance.cost * instance.cant,
             'date_create': instance.date_create,
             'date_edit': instance.date_edit,
             'materials': {
@@ -37,3 +40,27 @@ class MaterialRelationSerializers(serializers.ModelSerializer):#Persona
             }
         }
 
+"""Vista para la mano de obra"""
+class LabourRelationSerializers(serializers.ModelSerializer):#Persona
+    class Meta:
+        model = LabourRelarionshipModel
+        exclude = ('id','state','date_delete')
+
+    def to_representation(self, instance):
+        return{
+            'id_user_create': instance.id_user_create.username,
+            'cant': instance.cant,
+            'salary': instance.cost,
+            'factor_real_salary': instance.id_labour.fact_real_salary,
+            'is_real_salary': instance.id_labour.is_real_salary,
+            'total_cost': instance.cost * instance.cant * (instance.id_labour.is_real_salary if instance.id_labour.fact_real_salary else 1),
+            'date_create': instance.date_create,
+            'date_edit': instance.date_edit,
+            'materials': {
+                'description': instance.id_labour.description,
+                'unit': instance.id_labour.unit,
+                'data_aditional': instance.id_labour.data_aditional,
+                'brand': instance.id_labour.brand,
+                #'family_description': instance.id_family.id_materials.id_family.description,
+            }
+        }
