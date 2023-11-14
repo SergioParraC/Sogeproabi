@@ -1,6 +1,4 @@
-from apps.APUs.models import (
-    MaterialsRelationshipModel, AnalysisOfUnitaryPricesModel, LabourRelarionshipModel
-)
+from apps.APUs.models import *
 from rest_framework import serializers
 
 """Vista general para los APUs"""
@@ -64,3 +62,33 @@ class LabourRelationSerializers(serializers.ModelSerializer):#Persona
                 #'family_description': instance.id_family.id_materials.id_family.description,
             }
         }
+
+"""Vista para añadir las herramientas"""
+class ToolsRelationSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = ToolsRelarionshipModel
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        return{
+            'id_user_create': instance.id_user_create.username,
+            'cant': instance.cant,
+            'unit_cost': instance.cost,
+            'total_cost': instance.cost * instance.cant,
+            'date_create': instance.date_create,
+            'date_edit': instance.date_edit,
+            'tools': {
+                'description': instance.id_materials.description,
+                'unit': instance.id_materials.unit,
+                'data_aditional': instance.id_materials.data_aditional,
+                'brand': instance.id_materials.brand,
+            }
+        }
+
+"""Serializer basico para listar los APUs"""
+class APUsListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = AnalysisOfUnitaryPricesModel
+        fields = ['id', 'description', 'unit', 'key_user_item', 'id_user_create']

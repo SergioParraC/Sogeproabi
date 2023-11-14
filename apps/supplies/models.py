@@ -36,7 +36,9 @@ class ToolsModel(SuppliesBaseModel):
 
     id_family = models.ForeignKey(ToolsFamilyModel, verbose_name='Familia de herramientas', on_delete=models.CASCADE, blank=True)
     brand = models.CharField('Marca', max_length=50, null=True, blank=True)
-
+    class Meta:
+        verbose_name = ("Herramienta")
+        verbose_name_plural = ("Herramientas")
     def __str__(self):
         return self.description
 

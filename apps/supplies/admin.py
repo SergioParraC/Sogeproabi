@@ -10,3 +10,6 @@ class MaterialsFamilyAdmin(admin.ModelAdmin):
 
 admin.site.register(MaterialsFamilyModel, MaterialsFamilyAdmin)
 admin.site.register(MaterialsModel, MaterialsAdmin)
+admin.site.register(ToolsModel, MaterialsAdmin)
+admin.site.register(ToolsFamilyModel, MaterialsFamilyAdmin)
+admin.site.register(LabourModel, MaterialsAdmin)
