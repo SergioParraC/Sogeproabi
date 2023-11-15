@@ -10,3 +10,9 @@ class MaterialRelationAdmin(admin.ModelAdmin):
 
 admin.site.register(AnalysisOfUnitaryPricesModel, APIsAdmin)
 admin.site.register(MaterialsRelationshipModel, MaterialRelationAdmin)
+admin.site.register(LabourRelarionshipModel)
+admin.site.register(ToolsRelarionshipModel)
+admin.site.register(SubcontractJobRelarionshipModel)
+admin.site.register(FreightRelarionshipModel)
+admin.site.register(EquipmentRelarionshipModel)
+admin.site.register(AuxEquipmentRelarionshipModel)

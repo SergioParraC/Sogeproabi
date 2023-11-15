@@ -16,15 +16,17 @@ class GeneralRelListCreateAPIView(generics.ListCreateAPIView):
     def get(self, request, item):
         apu = AnalysisOfUnitaryPricesModel.objects.filter(key_user_item=item)
         apu_serializer = APUsSerializers(apu, many = True).data
-
+        
         """Se realiza un bucle para concatenar la info del material al APU"""
+        sum_total_price = 0
         for apu in apu_serializer:
-            material = self.get_serializer().Meta.model.objects.filter(id_APU = apu['id'], )
-            apu['material'] = self.serializer_class(material, many=True).data
-            price = self.get_serializer().Meta.model.objects.filter(id_APU = apu['id'],).annotate(total_price = F('cost') * F('cant'))
-            sum_total_price = 0
+            material = self.get_serializer().Meta.model.objects.filter(id_APU = apu['id'])
+            #Obtiene el valor del precio total del insumo
+            price = self.get_serializer().Meta.model.objects.filter(id_APU = apu['id'], ).annotate(total_price =  F('cost') * F('cant'))
+            
             for item in price:
                 sum_total_price = sum_total_price + item.total_price
+            apu['material'] = self.serializer_class(material, many=True).data
         apu_serializer.append({'total_price': sum_total_price})
         return Response(apu_serializer)
 
@@ -44,6 +46,7 @@ class GeneralRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
 
     def get_queryset(self):
         apu = AnalysisOfUnitaryPricesModel.objects.filter(key_user_item=self.kwargs["item"]).values('id')
+        print(apu)
         #Extrae el item que se está modificando, evia ingresar a otros apus que no tiene nada que ver
         for elemt in apu:
             id_elemet = elemt['id']

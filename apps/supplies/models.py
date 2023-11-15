@@ -7,6 +7,10 @@ class MaterialsFamilyModel(models.Model):
     id = models.AutoField(primary_key= True)
     description = models.CharField('Descripción', max_length=20)
 
+    class Meta:
+        verbose_name = ("Familia de material")
+        verbose_name_plural = ("Familias de materiales")
+
     def __str__(self):
         return self.description
 
@@ -28,6 +32,10 @@ class ToolsFamilyModel(models.Model):
     id = models.AutoField(primary_key= True)
     description = models.CharField('Descripción', max_length=20, null=False, blank=False)
 
+    class Meta:
+        verbose_name = ("Familia de herramienta")
+        verbose_name_plural = ("Familias de herramientas")
+        
     def __str__(self):
         return self.description
     
@@ -47,15 +55,27 @@ class LabourModel(SuppliesBaseModel):
     
     fact_real_salary = models.DecimalField('Factor de salario real', max_digits=5, decimal_places=2, default=1)
     is_real_salary = models.BooleanField('Aplica factor de salario real?', default=False)
+    
+    class Meta:
+        verbose_name = ("Mano de obra")
+        verbose_name_plural = ("Mano de obra")
 
 """Modelo para subcontratos a todo costo"""
 class SubcontractJobModel(SuppliesBaseModel):
     
+    class Meta:
+        verbose_name = ("Subcontrato")
+        verbose_name_plural = ("Subcontratos")
+        
     def __str__(self):
         return self.description
     
 """Modelo para fletes"""
 class FreightModel(SuppliesBaseModel):
+
+    class Meta:
+        verbose_name = ("Flete")
+        verbose_name_plural = ("Fletes")
 
     def __str__(self):
         return self.description
@@ -63,11 +83,19 @@ class FreightModel(SuppliesBaseModel):
 """Modelo para equipos"""
 class EquipmentModel(SuppliesBaseModel):
 
+    class Meta:
+        verbose_name = ("Equipo")
+        verbose_name_plural = ("Equipos")
+        
     def __str__(self):
         return self.description
     
 """Modelo para equipos auxiliares"""
 class AuxEquipmentModel(SuppliesBaseModel):
 
+    class Meta:
+        verbose_name = ("Equipo auxiliar")
+        verbose_name_plural = ("Equipos auxiliares")
+        
     def __str__(self):
         return self.description

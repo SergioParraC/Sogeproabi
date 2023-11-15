@@ -15,9 +15,37 @@ class LabourRelListCreateAPIView(GeneralRelListCreateAPIView):
 class LabourRelRetriebeUpdateDestroyAPIView(GeneralRetrieveUpdateDestroyAPIView):
     serializer_class = LabourRelationSerializers
 
-"""Vista para mostrar mano de obra"""
+"""Vista para mostrar herramienta"""
 class ToolsListCreateAPIView(GeneralRelListCreateAPIView):
     serializer_class = ToolsRelationSerializers
 
 class ToolsRetriebeUpdateDestroyAPIView(GeneralRetrieveUpdateDestroyAPIView):
     serializer_class = ToolsRelarionshipModel
+    
+"""Vista para mostrar subcontratos"""
+class SubListCreateAPIView(GeneralRelListCreateAPIView):
+    serializer_class = SubRelationSerializers
+
+class SubRetriebeUpdateDestroyAPIView(GeneralRetrieveUpdateDestroyAPIView):
+    serializer_class = SubRelationSerializers
+    
+"""Vista para mostrar fletes"""
+class FreightListCreateAPIView(GeneralRelListCreateAPIView):
+    serializer_class = FreightRelationSerializers
+
+class FreightRetriebeUpdateDestroyAPIView(GeneralRetrieveUpdateDestroyAPIView):
+    serializer_class = FreightRelationSerializers
+    
+"""Vista para mostrar equipos"""
+class EquipmentListCreateAPIView(GeneralRelListCreateAPIView):
+    serializer_class = EquipmentRelationSerializers
+
+class EquipmentRetriebeUpdateDestroyAPIView(GeneralRetrieveUpdateDestroyAPIView):
+    serializer_class = EquipmentRelationSerializers
+    
+"""Vista para mostrar equipos auxiliares"""
+class AuxEquipmentListCreateAPIView(GeneralRelListCreateAPIView):
+    serializer_class = AuxEquipmentRelationSerializers
+
+class AuxEquipmentRetriebeUpdateDestroyAPIView(GeneralRetrieveUpdateDestroyAPIView):
+    serializer_class = AuxEquipmentRelationSerializers

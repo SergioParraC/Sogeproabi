@@ -76,7 +76,7 @@ class FreightRelarionshipModel(RelationshipBaseModel):
         verbose_name_plural = ("Relaciones fletes - APU")
 
     def __str__(self):
-        return f"{self.id_subcontract}: {self.cant}"
+        return f"{self.id_freight}: {self.cant}"
     
 """Tabla rompiendo relaciones muchos a muchos de equipos, se relaciona la base"""
 class EquipmentRelarionshipModel(RelationshipBaseModel):
@@ -88,7 +88,7 @@ class EquipmentRelarionshipModel(RelationshipBaseModel):
         verbose_name_plural = ("Relaciones equipos - APU")
 
     def __str__(self):
-        return f"{self.id_subcontract}: {self.cant}"
+        return f"{self.id_equipment}: {self.cant}"
 
 """Tabla rompiendo relaciones muchos a muchos de equipos auxiliares, se relaciona la base"""
 class AuxEquipmentRelarionshipModel(RelationshipBaseModel):
@@ -100,4 +100,4 @@ class AuxEquipmentRelarionshipModel(RelationshipBaseModel):
         verbose_name_plural = ("Relaciones equipos auxiliares - APU")
 
     def __str__(self):
-        return f"{self.id_subcontract}: {self.cant}"
+        return f"{self.id_equipment}: {self.cant}"
