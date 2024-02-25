@@ -60,13 +60,19 @@ class LabourModel(SuppliesBaseModel):
         verbose_name = ("Mano de obra")
         verbose_name_plural = ("Mano de obra")
 
+    class Meta:
+        verbose_name = ("Mano de obra")
+        verbose_name_plural = ("Mano de obra")
+
+    def __str__(self):
+        return self.description
+
 """Modelo para subcontratos a todo costo"""
 class SubcontractJobModel(SuppliesBaseModel):
     
     class Meta:
         verbose_name = ("Subcontrato")
         verbose_name_plural = ("Subcontratos")
-        
     def __str__(self):
         return self.description
     
@@ -84,9 +90,11 @@ class FreightModel(SuppliesBaseModel):
 class EquipmentModel(SuppliesBaseModel):
 
     class Meta:
-        verbose_name = ("Equipo")
+
+        verbose_name = ("Equipos")
         verbose_name_plural = ("Equipos")
-        
+
+
     def __str__(self):
         return self.description
     
@@ -96,6 +104,5 @@ class AuxEquipmentModel(SuppliesBaseModel):
     class Meta:
         verbose_name = ("Equipo auxiliar")
         verbose_name_plural = ("Equipos auxiliares")
-        
     def __str__(self):
         return self.description

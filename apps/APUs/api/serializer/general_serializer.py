@@ -5,6 +5,7 @@ from rest_framework import serializers
 class APUsSerializers(serializers.ModelSerializer):#Ciudad
     class Meta:
         model = AnalysisOfUnitaryPricesModel
+        
 
     def to_representation(self, instance):
         return{
@@ -15,11 +16,26 @@ class APUsSerializers(serializers.ModelSerializer):#Ciudad
             'user_create': instance.id_user_create.username
         }
 
-"""Vista para los materiales"""
-class MaterialRelationSerializers(serializers.ModelSerializer):#Persona
+"""Vista para listar los materiales"""
+class MaterialListSerializers(serializers.ModelSerializer):
     class Meta:
         model = MaterialsRelationshipModel
-        exclude = ('id','state','date_delete')
+
+    def to_representation(self, instance):
+        return{
+            'description': instance.id_materials.description,
+            'unit': instance.id_materials.unit,
+            'cant': instance.cant,
+            'unit_cost': instance.cost,
+            'total_cost': instance.cost * instance.cant,
+        }
+
+"""Vista para añadir los materiales"""
+class MaterialRelationSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = MaterialsRelationshipModel
+        fields = '__all__'
 
     def to_representation(self, instance):
         return{
@@ -42,7 +58,7 @@ class MaterialRelationSerializers(serializers.ModelSerializer):#Persona
 class LabourRelationSerializers(serializers.ModelSerializer):#Persona
     class Meta:
         model = LabourRelarionshipModel
-        exclude = ('id','state','date_delete')
+        fields = '__all__'
 
     def to_representation(self, instance):
         return{
@@ -51,10 +67,10 @@ class LabourRelationSerializers(serializers.ModelSerializer):#Persona
             'salary': instance.cost,
             'factor_real_salary': instance.id_labour.fact_real_salary,
             'is_real_salary': instance.id_labour.is_real_salary,
-            'total_cost': instance.cost * instance.cant * (instance.id_labour.is_real_salary if instance.id_labour.fact_real_salary else 1),
+            'total_cost': instance.cost * instance.cant * (instance.id_labour.fact_real_salary if instance.id_labour.is_real_salary else 1),
             'date_create': instance.date_create,
             'date_edit': instance.date_edit,
-            'materials': {
+            'labour': {
                 'description': instance.id_labour.description,
                 'unit': instance.id_labour.unit,
                 'data_aditional': instance.id_labour.data_aditional,

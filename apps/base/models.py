@@ -19,7 +19,10 @@ class SuppliesBaseModel(models.Model):
 class RelationshipBaseModel(models.Model):
     id = models.BigAutoField(primary_key=True)
     id_user_create = models.ForeignKey(User, verbose_name="Id usuario que añadió el insumo", on_delete=models.CASCADE)
+
     cant = models.DecimalField("Cantidad", max_digits=8, decimal_places=2, default=0)
+
+    cant = models.DecimalField("Cantidad", max_digits=5, decimal_places=5, default=0)
     cost = models.DecimalField('Costo unitario', max_digits=8, decimal_places=2, blank=False, default=0)
     date_create = models.DateTimeField("Fecha y hora de creación", auto_now=False, auto_now_add=True)
     date_edit = models.DateTimeField("Fecha y hora de modificación", auto_now=True, auto_now_add=False)

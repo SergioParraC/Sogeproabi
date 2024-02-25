@@ -26,8 +26,8 @@ class MaterialsRelationshipModel(RelationshipBaseModel):
     id_APU = models.ForeignKey(AnalysisOfUnitaryPricesModel, verbose_name="APU", on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = ("Relación materiales - APU")
-        verbose_name_plural = ("Relaciones materiales - APU")
+        verbose_name = ("Relación de material - APU")
+        verbose_name_plural = ("Relaciones de materiales - APU")
     
     def __str__(self):
         return f"{self.id_materials}: {self.cant}"

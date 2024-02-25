@@ -20,13 +20,18 @@ class GeneralRelListCreateAPIView(generics.ListCreateAPIView):
         """Se realiza un bucle para concatenar la info del material al APU"""
         sum_total_price = 0
         for apu in apu_serializer:
+
             material = self.get_serializer().Meta.model.objects.filter(id_APU = apu['id'])
+
             #Obtiene el valor del precio total del insumo
             price = self.get_serializer().Meta.model.objects.filter(id_APU = apu['id'], ).annotate(total_price =  F('cost') * F('cant'))
             
             for item in price:
                 sum_total_price = sum_total_price + item.total_price
+
+            
             apu['material'] = self.serializer_class(material, many=True).data
+
         apu_serializer.append({'total_price': sum_total_price})
         return Response(apu_serializer)
 
